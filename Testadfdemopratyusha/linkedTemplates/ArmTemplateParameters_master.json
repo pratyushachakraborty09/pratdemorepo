@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "Testadfdemopratyusha"
+		},
+		"sharedselfhostedIR_properties_typeProperties_linkedInfo_resourceId": {
+			"value": "/subscriptions/80eb0ca8-238b-4f19-be0e-2a286c3e6201/resourcegroups/startingfreetiral/providers/Microsoft.DataFactory/factories/adfdemopratyusha/integrationruntimes/IR-selfhosted"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
