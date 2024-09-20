@@ -1,0 +1,12 @@
+{
+	"name": "ABCD",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureblobForSqlServer1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AmazonRdsForSqlServerTable",
+		"schema": []
+	}
+}
