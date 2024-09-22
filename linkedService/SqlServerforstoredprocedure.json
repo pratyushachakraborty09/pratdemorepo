@@ -1,0 +1,21 @@
+{
+	"name": "SqlServerforstoredprocedure",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "pratyusha",
+			"database": "dbname",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "pr",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI3ZTgzYWYwYi1iYmI5LTQwNWMtOGU5ZS1iODVlYzJlMjcwNzYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "IR-selfhosted",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
