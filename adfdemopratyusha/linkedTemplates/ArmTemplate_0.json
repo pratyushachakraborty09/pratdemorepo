@@ -1,0 +1,193 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adfdemopratyusha"
+		},
+		"Linkedsqlserver_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Linkedsqlserver'"
+		},
+		"linkedservice_sql_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'linkedservice_sql'"
+		},
+		"linkedservice_storagedemopratyusha_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'linkedservice_storagedemopratyusha'"
+		},
+		"SqlServerforstoredprocedure_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SqlServerforstoredprocedure'"
+		},
+		"Linkedsqlserver_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "abcdsqlserver.dataset.windows.net"
+		},
+		"Linkedsqlserver_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "abcddevdb"
+		},
+		"Linkedsqlserver_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Pratchakdumdum"
+		},
+		"linkedservice_sql_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "myserver.db.new"
+		},
+		"linkedservice_sql_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "@{linkedService().dbname}"
+		},
+		"linkedservice_sql_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Barnachak"
+		},
+		"SqlServerforstoredprocedure_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "pratyusha"
+		},
+		"SqlServerforstoredprocedure_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "dbname"
+		},
+		"SqlServerforstoredprocedure_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "pr"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Wait1",
+						"type": "Wait",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 1
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Linkedsqlserver')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"server": "[parameters('Linkedsqlserver_properties_typeProperties_server')]",
+					"database": "[parameters('Linkedsqlserver_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('Linkedsqlserver_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('Linkedsqlserver_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/linkedservice_sql')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"parameters": {
+					"dbname": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"server": "[parameters('linkedservice_sql_properties_typeProperties_server')]",
+					"database": "[parameters('linkedservice_sql_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('linkedservice_sql_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('linkedservice_sql_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/linkedservice_storagedemopratyusha')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('linkedservice_storagedemopratyusha_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/IR-selfhosted')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {
+					"selfContainedInteractiveAuthoringEnabled": true
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SqlServerforstoredprocedure')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"server": "[parameters('SqlServerforstoredprocedure_properties_typeProperties_server')]",
+					"database": "[parameters('SqlServerforstoredprocedure_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('SqlServerforstoredprocedure_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('SqlServerforstoredprocedure_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "IR-selfhosted",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/IR-selfhosted')]"
+			]
+		}
+	]
+}

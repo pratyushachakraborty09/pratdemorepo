@@ -1,0 +1,54 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfdemopratyusha"
+		},
+		"Linkedsqlserver_password": {
+			"value": ""
+		},
+		"SqlServerforstoredprocedure_password": {
+			"value": ""
+		},
+		"linkedservice_sql_password": {
+			"value": ""
+		},
+		"linkedservice_storagedemopratyusha_connectionString": {
+			"value": ""
+		},
+		"Linkedsqlserver_properties_typeProperties_server": {
+			"value": "abcdsqlserver.dataset.windows.net"
+		},
+		"Linkedsqlserver_properties_typeProperties_database": {
+			"value": "abcddevdb"
+		},
+		"Linkedsqlserver_properties_typeProperties_userName": {
+			"value": "Pratchakdumdum"
+		},
+		"SqlServerforstoredprocedure_properties_typeProperties_server": {
+			"value": "pratyusha"
+		},
+		"SqlServerforstoredprocedure_properties_typeProperties_database": {
+			"value": "dbname"
+		},
+		"SqlServerforstoredprocedure_properties_typeProperties_userName": {
+			"value": "pr"
+		},
+		"linkedservice_sql_properties_typeProperties_server": {
+			"value": "myserver.db.new"
+		},
+		"linkedservice_sql_properties_typeProperties_database": {
+			"value": "@{linkedService().dbname}"
+		},
+		"linkedservice_sql_properties_typeProperties_userName": {
+			"value": "Barnachak"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
